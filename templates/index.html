@@ -3,7 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <title>Find Nearest Hospital</title>
+    <style>
+        /* Resetting default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Centering content vertically and horizontally */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #007bff; /* Blue background */
+    color: #ffffff; /* White text color */
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Hide overflow to prevent background image from creating scrollbars */
+}
+
+/* Main container styles */
+.container {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    animation: fadeIn 0.5s ease; /* Fade-in animation */
+}
+
+/* Heading style with text animation */
+h1 {
+    font-size: 36px;
+    animation: fadeInUp 1s ease;
+}
+
+/* Button styles */
+button {
+    margin-top: 20px; /* Space between heading and button */
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff; /* White button background */
+    color: #007bff; /* Blue button text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+    h1 {
+        font-size: 24px;
+    }
+}
+
+    </style>
 </head>
 <body>
     <h1>Find Nearest Hospital</h1>

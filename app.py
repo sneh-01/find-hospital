@@ -5,9 +5,12 @@ app = Flask(__name__)
 
 # Simulated hospital data (replace with actual data source)
 hospitals = [
-    {"name": "Hospital A", "lat": 40.73061, "lng": -73.935242},
-    {"name": "Hospital B", "lat": 40.748817, "lng": -73.985428},
-    {"name": "Hospital C", "lat": 40.707851, "lng": -74.003002}
+    {"name": "Hospital Guru Kirpa, Best Rehab Center in Punjab", "lat": 31.096134, "lng": 75.778770},
+    {"name": "Hospital Ahmedabad Civil Hospital, Ahmedabad, Gujarat, India", "lat": 23.053967, "lng": 72.603844},
+    {"name": "Advanced Centre for Eyes, Kitchlu Nagar, Ludhiana, Punjab, India", "lat": 30.912411, "lng": 75.819412},
+    {"name": "Apple Hospital, Surat, Gujarat, India", "lat": 	21.182947, "lng": 72.831581},
+    {"name": "Padmini Nursing Home, Chetpet, Chennai, Tamil Nadu, India", "lat": 	13.072790, "lng": 80.234421},
+    {"name": "Vihar Hospital, Anand, Gujarat, India", "lat": 22.554609, "lng": 	72.967361}
     # Add more hospitals with their coordinates
 ]
 
