@@ -3,33 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Find Nearest Hospital</title>
-    <script>
-        // Function to find nearest hospital
-        function findNearestHospital() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-
-                    // Redirect to result page with latitude and longitude parameters
-                    window.location.href = `/result?lat=${latitude}&lon=${longitude}`;
-                }, function(error) {
-                    console.error('Geolocation error:', error.message);
-                    alert('Geolocation service failed. Please enable location access.');
-                });
-            } else {
-                console.error('Geolocation not supported.');
-                alert('Geolocation is not supported by this browser.');
-            }
-        }
-    </script>
 </head>
 <body>
-    <div>
-        <h1>Find Nearest Hospital</h1>
-        <button onclick="findNearestHospital()">Find Nearest Hospital</button>
-    </div>
+    <h1>Find Nearest Hospital</h1>
+    <form action="/find_nearest_hospital" method="post">
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
+        <button type="submit">Find Nearest Hospital</button>
+    </form>
+
+    <script>
+        // Get user's current location
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                document.getElementById('latitude').value = position.coords.latitude;
+                document.getElementById('longitude').value = position.coords.longitude;
+            });
+        } else {
+            alert('Geolocation is not supported by your browser.');
+        }
+    </script>
 </body>
 </html>

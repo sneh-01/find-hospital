@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hospital.name }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <style>
+        #map { height: 400px; }
+    </style>
+</head>
+<body>
+    <h1>{{ hospital.name }}</h1>
+    <p>Latitude: {{ hospital.lat }}</p>
+    <p>Longitude: {{ hospital.lng }}</p>
+
+    <div id="map" class="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([{{ hospital.lat }}, {{ hospital.lng }}], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([{{ hospital.lat }}, {{ hospital.lng }}]).addTo(map)
+            .bindPopup('{{ hospital.name }}').openPopup();
+    </script>
+</body>
+</html>
