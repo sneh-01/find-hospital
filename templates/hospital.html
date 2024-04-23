@@ -1,33 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/hospital.css') }}">
     <title>{{ hospital.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hospital.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <style>
         #map { height: 400px; }
+        /* Resetting default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Full-page container with centered content */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333; /* Dark text color */
+    font-family: Arial, sans-serif;
+}
+
+/* Heading style */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #007bff; /* Blue heading color */
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease;
+}
+
+/* Map container */
+#map {
+    width: 80%;
+    max-width: 800px;
+    height: 400px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Keyframe animation for fade-in effect */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
     </style>
 </head>
 <body>
-    <h1>{{ hospital.name }}</h1>
-    <p>Latitude: {{ hospital.lat }}</p>
-    <p>Longitude: {{ hospital.lng }}</p>
+    <div class="container">
+        <h1>{{ hospital.name }}</h1>
+        
+        <div id="map" class="map"></div>
 
-    <div id="map" class="map"></div>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+            var map = L.map('map').setView([{{ hospital.lat }}, {{ hospital.lng }}], 13);
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        var map = L.map('map').setView([{{ hospital.lat }}, {{ hospital.lng }}], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
-
-        L.marker([{{ hospital.lat }}, {{ hospital.lng }}]).addTo(map)
-            .bindPopup('{{ hospital.name }}').openPopup();
-    </script>
+            L.marker([{{ hospital.lat }}, {{ hospital.lng }}]).addTo(map)
+                .bindPopup('{{ hospital.name }}').openPopup();
+        </script>
+    </div>
 </body>
 </html>
