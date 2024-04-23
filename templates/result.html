@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nearest Hospital</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Nearest Hospital</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Nearest Hospital</h1>
-        <p><strong>Name:</strong> {{ nearest_hospital.name }}</p>
-        <p><strong>Distance (km):</strong> {{ nearest_hospital.distance }}</p>
-        <p><a href="/">Back to Home</a></p>
+    <h1>Nearest Hospital</h1>
+    <div>
+        <img src="{{ url_for('static', filename=hospital['image']) }}" alt="Hospital Image" width="200">
+        <h2>{{ hospital['name'] }}</h2>
+        <p>Distance: {{ hospital['distance'] }} km</p>
+        <p><a href="{{ hospital['website'] }}" target="_blank">Visit Hospital Website</a></p>
     </div>
 </body>
 </html>
